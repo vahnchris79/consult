@@ -17,6 +17,7 @@
 브이월드 인증키: https://www.vworld.kr 에서 발급 후 VWORLD_KEY 입력
 """
 import os
+from dotenv import load_dotenv
 import numpy as np
 import pandas as pd
 import geopandas as gpd
@@ -44,7 +45,8 @@ POP_LAYERS  = {2022: "100m_hjdong_pop_2022", 2023: "100m_hjdong_pop_2023",
                2026: "100m_hjdong_pop_2026"}   # ※ 현재 5개 레이어 값이 동일(2022) → 원본 확인 권장
 CCTV_LAYER  = "CCTVINFO_26170"
 EMD_LAYER   = "EMD26710"
-VWORLD_KEY  = "A991416E-F2EE-3959-99F3-C71FFC190B72"
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "env"))
+VWORLD_KEY  = os.environ["VWORLD_API_KEY"]
 
 COL_GID, COL_TCLS, COL_POP, COL_DONG = "100MGID", "시간분류", "생활인구", "행정동명"
 TIME_ORDER  = ["심야2", "오전1", "오전2", "오후1", "오후2", "심야1"]

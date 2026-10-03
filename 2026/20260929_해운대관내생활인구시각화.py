@@ -37,6 +37,7 @@ import argparse
 import io
 import math
 import os
+from dotenv import load_dotenv
 import re
 import sys
 import warnings
@@ -74,7 +75,8 @@ WORK_PATH = r"D:/04_자료제출/2026년/김미애 국회의원 자료요청/"
 CSV_PATH = WORK_PATH + r"집계결과/해운대 관내 시간대 생활인구 현황.csv"        # 생활인구 CSV 파일
 GPKG_PATH = WORK_PATH + r"해운대 관내 생활인구 이동패턴 분석.gpkg"             # GeoPackage 파일
 OUTPUT_DIR = WORK_PATH + r"PNG/"    # 결과 이미지 저장 폴더
-VWORLD_KEY = "A991416E-F2EE-3959-99F3-C71FFC190B72"                                            # 브이월드 인증키 (비워두면 환경변수 VWORLD_API_KEY 사용)
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "env"))
+VWORLD_KEY = os.environ.get("VWORLD_API_KEY", "")                                            # 브이월드 인증키 (비워두면 환경변수 VWORLD_API_KEY 사용)
 
 # gpkg 레이어 이름
 BOUNDARY_LAYER = "행정동경계"

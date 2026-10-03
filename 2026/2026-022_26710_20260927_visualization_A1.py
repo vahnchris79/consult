@@ -22,6 +22,7 @@
 브이월드 인증키: https://www.vworld.kr 에서 발급 (타일 요청 시 등록 도메인을 Referer로 전송)
 """
 import os
+from dotenv import load_dotenv
 import re
 import math
 import warnings
@@ -66,7 +67,8 @@ POP_LAYERS  = {y: f"100m_hjdong_pop_{y}" for y in YEARS}
 CCTV_XLSX   = "CCTV 위치정보기장군_중복제거_혜안변환.xlsx"   # CCTV 설치현황(위도·경도·설치년월). 파일이 있으면 이것을 사용
 CCTV_LAYER  = "CCTVINFO_26170"    # CCTV_XLSX 가 없을 때 GPKG 레이어 사용 (※ 기장군 코드는 26710 — 오기 여부 확인)
 EMD_LAYER   = "EMD26710"
-VWORLD_KEY  = "A991416E-F2EE-3959-99F3-C71FFC190B72"
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "env"))
+VWORLD_KEY  = os.environ["VWORLD_API_KEY"]
 VWORLD_REFERER = ""               # 인증키 발급 시 등록한 서비스 URL (예: "http://localhost"). 비워두면 미전송
 
 COL_GID, COL_TCLS, COL_POP, COL_DONG = "100MGID", "시간분류", "생활인구", "행정동명"
